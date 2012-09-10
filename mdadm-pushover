@@ -1,0 +1,34 @@
+#!/bin/bash
+
+API_KEY="YOUR_KEY_HERE"
+PRIORITY=1 # 1 overrides quiet times, 0 is the default
+RETIES=5
+MAXWAIT=120
+
+# Don't change these
+APP_KEY="oInhOuUZDnPnl859kjzquJs3nTv0qF"
+EVENT=$1
+DEVICE=$2
+COMPONENT=$3
+
+if [ -z $1 -o -z $2 ]; then
+	exit 1
+fi
+
+eventtime=$(date +%s)
+unit=${DEVICE:(-1):1}
+host=$(hostname)
+title="${host}|${DEVICE}: ${EVENT}"
+body="A ${EVENT} event occurred on ${DEVICE} ${COMPONENT}
+$(grep -A3 ^md${unit} /proc/mdstat)"
+
+curl -m $MAXWAIT -s --retry $RETRIES \
+ -F "token=${APP_KEY}" \
+ -F "user=${API_KEY}" \
+ -F "priority=${PRIORITY}" \
+ -F "title=${title}" \
+ -F "message=${body}" \
+ -F "timestampe=${eventtime}" \
+ https://api.pushover.net/1/messages > /dev/null &
+
+exit 0
