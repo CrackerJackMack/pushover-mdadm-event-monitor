@@ -1,7 +1,7 @@
 pushover-mdadm-event-monitor
 ============================
 
-mdadm events for [pushover.net](pushover.net)
+mdadm events for [pushover.net](http://pushover.net)
 
 
 Install
