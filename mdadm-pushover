@@ -2,7 +2,7 @@
 
 API_KEY="YOUR_KEY_HERE"
 PRIORITY=1 # 1 overrides quiet times, 0 is the default
-RETIES=5
+RETRIES=5
 MAXWAIT=120
 
 # Don't change these
