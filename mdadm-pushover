@@ -28,7 +28,7 @@ curl -m $MAXWAIT -s --retry $RETRIES \
  -F "priority=${PRIORITY}" \
  -F "title=${title}" \
  -F "message=${body}" \
- -F "timestampe=${eventtime}" \
+ -F "timestamp=${eventtime}" \
  https://api.pushover.net/1/messages > /dev/null &
 
 exit 0
